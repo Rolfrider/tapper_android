@@ -7,6 +7,7 @@ import com.rolfrider.tapper.GameTimer
 class TappingViewModel: ViewModel() {
 
 
+
     private val gameTimer = GameTimer(
         {timeLeftLiveData.value = parseMillisToDisplayFormat(it)},
         {
@@ -15,10 +16,16 @@ class TappingViewModel: ViewModel() {
         }
         )
 
+
     private val timeLeftLiveData = MutableLiveData<String>()
-    private val tapsLiveData = MutableLiveData<String>()
+    private val tapsLiveData = MutableLiveData<Int>()
     private val endGameLiveData = MutableLiveData<Boolean>()
 
+    private var tapsCounter = 0
+
+    init {
+        tapsLiveData.value = tapsCounter
+    }
 
     fun timeLeft() = timeLeftLiveData
     fun taps() = tapsLiveData
@@ -28,6 +35,11 @@ class TappingViewModel: ViewModel() {
         gameTimer.start()
     }
 
+
+    fun tap(){
+        tapsCounter++
+        tapsLiveData.value = tapsCounter
+    }
 
     private fun parseMillisToDisplayFormat(millis: Long): String{
         val seconds: Int = (millis/1000).toInt()
