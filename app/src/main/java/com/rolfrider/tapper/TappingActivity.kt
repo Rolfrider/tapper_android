@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.rolfrider.tapper.viewmodel.TappingViewModel
 import kotlinx.android.synthetic.main.activity_tapping.*
 
 class TappingActivity : AppCompatActivity(){
@@ -17,6 +18,12 @@ class TappingActivity : AppCompatActivity(){
 
         viewModel.taps().observe(this, Observer(this::updateTaps))
         viewModel.timeLeft().observe(this, Observer(this::updateTime))
+        viewModel.endGame().observe(this, Observer(this::endGame))
+    }
+
+    override fun onEnterAnimationComplete() {
+        super.onEnterAnimationComplete()
+        viewModel.startGame()
     }
 
 
@@ -27,4 +34,11 @@ class TappingActivity : AppCompatActivity(){
     private fun updateTaps(newTaps: String){
         tapView.text = newTaps
     }
+
+    private fun endGame(end: Boolean){
+        if (end){
+            println("END GAME")
+        }
+    }
+
 }
