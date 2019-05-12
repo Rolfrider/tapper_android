@@ -14,7 +14,7 @@ abstract class ScoreDao {
     @Delete
     abstract fun deleteScore(score: ScoreDB)
 
-    @Query("SELECT * FROM score ORDER BY taps")
+    @Query("SELECT * FROM score ORDER BY taps DESC")
     abstract fun getScores(): List<ScoreDB>
 
     fun addToTopFive(score: ScoreDB): Boolean {

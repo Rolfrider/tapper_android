@@ -22,6 +22,9 @@ class ViewModelFactory(application: Application): ViewModelProvider.Factory {
             modelClass.isAssignableFrom(TappingViewModel::class.java) -> {
                 TappingViewModel(roomScores) as T
             }
+            modelClass.isAssignableFrom(WelcomeViewModel::class.java) -> {
+                WelcomeViewModel(roomScores) as T
+            }
             else -> throw IllegalArgumentException("Unknown view model ${modelClass.simpleName}")
         }
     }

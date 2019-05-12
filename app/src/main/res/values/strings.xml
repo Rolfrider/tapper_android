@@ -5,5 +5,7 @@
     <string name="alert_new_record">You qualify for record list.</string>
     <string name="alert_score">You taped %1$d.</string>
     <string name="alert_button">Thanks</string>
+    <string name="label_title">DaftTapper</string>
+    <string name="tap_score">%1$d taps</string>
 
 </resources>
