@@ -1,4 +1,4 @@
-package com.rolfrider.tapper
+package com.rolfrider.tapper.game
 
 
 import android.animation.Animator
@@ -7,17 +7,21 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
-import androidx.core.animation.doOnStart
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.rolfrider.tapper.R
 import com.rolfrider.tapper.viewmodel.TappingViewModel
+import com.rolfrider.tapper.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_tapping.*
 
 class TappingActivity : AppCompatActivity(){
 
-    private val viewModel: TappingViewModel by lazy { ViewModelProviders.of(this).get(TappingViewModel::class.java)}
+    private val viewModel: TappingViewModel by lazy {
+        ViewModelProviders.of(this, ViewModelFactory(application))[TappingViewModel::class.java]
+    }
 
     private var touchBegan = false
 
@@ -109,6 +113,17 @@ class TappingActivity : AppCompatActivity(){
     private fun endGame(end: Boolean){
         if (end){
             gameEnd = true
+            val message: String = if (viewModel.saveScore()){
+                getString(R.string.alert_new_record) + getString(R.string.alert_score, viewModel.taps().value)
+            }else{
+                getString(R.string.alert_score, viewModel.taps().value)
+            }
+            AlertDialog.Builder(this)
+                .setTitle(R.string.alert_title)
+                .setMessage(message)
+                .setPositiveButton(R.string.alert_button) { _, _ -> finish() }
+                .create()
+                .show()
         }
     }
 

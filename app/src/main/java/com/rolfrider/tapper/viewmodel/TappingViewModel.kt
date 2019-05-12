@@ -2,19 +2,25 @@ package com.rolfrider.tapper.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.rolfrider.tapper.GameTimer
+import com.rolfrider.tapper.extension.toString
+import com.rolfrider.tapper.game.GameTimer
+import com.rolfrider.tapper.score.Score
+import com.rolfrider.tapper.score.Scores
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
-class TappingViewModel: ViewModel() {
+class TappingViewModel(private val scores: Scores): ViewModel() {
 
 
 
     private val gameTimer = GameTimer(
-        {timeLeftLiveData.value = parseMillisToDisplayFormat(it)},
+        { timeLeftLiveData.value = parseMillisToDisplayFormat(it) },
         {
             timeLeftLiveData.value = "00:00"
             endGameLiveData.value = true
         }
-        )
+    )
 
 
     private val timeLeftLiveData = MutableLiveData<String>()
@@ -35,6 +41,11 @@ class TappingViewModel: ViewModel() {
         gameTimer.start()
     }
 
+    fun saveScore() : Boolean {
+        val now = Calendar.getInstance().time
+        val nowInString = now.toString("dd MMM yyyy HH:mm:ss")
+        return scores.add(Score(tapsCounter, nowInString))
+    }
 
     fun tap(){
         tapsCounter++

@@ -1,9 +1,10 @@
-package com.rolfrider.tapper
+package com.rolfrider.tapper.welcome
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.rolfrider.tapper.R
 
-class MainActivity : AppCompatActivity() {
+class WelcomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

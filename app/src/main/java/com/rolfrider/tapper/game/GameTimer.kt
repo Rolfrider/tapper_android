@@ -1,4 +1,4 @@
-package com.rolfrider.tapper
+package com.rolfrider.tapper.game
 
 import android.os.CountDownTimer
 
