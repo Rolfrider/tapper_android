@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tapper</string>
+    <string name="label_play">PLAY</string>
+    <string name="alert_title">Congratulations!</string>
+    <string name="alert_new_record">You qualify for record list.</string>
+    <string name="alert_score">You taped %1$d.</string>
+    <string name="alert_button">Thanks</string>
+
+</resources>
