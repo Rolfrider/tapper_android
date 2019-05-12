@@ -3,12 +3,13 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:background="?attr/colorAccent"
         android:layout_width="match_parent"
-        android:id="@+id/tapping_screen"
         android:layout_height="match_parent">
 
     <TextView
             android:text="05:00"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/timeView" android:layout_marginTop="32dp"
@@ -17,8 +18,34 @@
             android:layout_marginEnd="177dp" android:textSize="36sp" app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintBottom_toTopOf="@+id/tapView"
             app:layout_constraintVertical_chainStyle="packed"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/countdown_animation"
+            app:lottie_rawRes="@raw/countdown_animation"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+    />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/playView"
+            android:visibility="gone"
+            android:text="@string/label_play"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+    />
+
     <TextView
             android:text="0"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tapView"

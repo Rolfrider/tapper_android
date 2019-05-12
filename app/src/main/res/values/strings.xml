@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Tapper</string>
+    <string name="label_play">PLAY</string>
 </resources>
